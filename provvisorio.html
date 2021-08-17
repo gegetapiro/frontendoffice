@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/customize.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    	
+ <style>
+ 
+    		/* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+		</style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="page-header"> -->
+        <h2>Inserimento visitatori con documento</h2>
+        <!-- </div> -->
+        <button id="researchpage" class="resbut">ricerca accessi</button>
+
+        <div class="table-responsive">
+            <table id="json-data" class="table table-bordered table-hover table-striped">
+                <tr>
+                    <th>Numero progressivo</th>
+                    <th>Data</th>
+                    <th>Ora ingresso</th>
+                    <th>Nominativo visitatore</th>
+                    <th>Tipologia documento</th>
+                    <th>Estremi documento</th>
+                    <th>Numero Badge interno</th>
+                    <th>Società rappresentata</th>
+                    <th>Referente interno</th>
+                    <th>Ora uscita</th>
+                    <th>Data uscita</th>
+                    <th>Note particolari</th>
+                    <th>Modifica</th>
+                    <th>Elimina</th>
+
+                </tr>
+                <script type="text/javascript">
+                    scrollingElement = (document.scrollingElement || document.body);
+
+                    function scrollSmoothToBottom(id) {
+                        $(scrollingElement).animate({
+                            scrollTop: document.body.scrollHeight
+                        }, 500);
+                    }
+
+                    function deleteRow(Whatta_id) {
+                        $.ajax({
+                            url: 'deleterecord.php',
+                            type: 'POST',
+                            data: {
+                                id: Whatta_id
+                            },
+                            success: function(response) {
+                                alert(response);
+                                location.reload(true);
+                            }
+                        });
+
+                    }
+
+                    function editExit(cheid) {
+                        window.location = "insertExit.php?cheid=" + cheid;
+
+                    }
+
+                    $(document).ready(function() {
+                        $("#researchpage").click(function() {
+                            window.open("searchEntries.html");
+                        });
+
+                        $("#researchpagebotton").click(function() {
+                            window.open("searchEntries.html");
+                        });
+
+
+                        // ############### getJSON #######################
+
+
+
+
+                        var url = "datagetterJson.php";
+
+                        $.getJSON(url, function(data) {
+
+                            $.each(data.visitatori, function(i, elem) {
+
+
+
+                                var newRow = "<tr><td id='myid'>" + elem.id + "</td><td>" + elem.data + "</td><td>" + elem.ora_ingresso + "</td><td>" + elem.nome_visitatore + "</td><td>" +
+                                    elem.tipodocumento + "</td><td>" + elem.estremi_documento + "</td><td>" + elem.num_badge + "</td><td>" + elem.societa_rappresentata +
+                                    "</td><td>" + elem.referente_interno + "</td><td>" + elem.ora_uscita + "</td><td>" + elem.dataUscita + "</td><td>" + elem.annotazioni +
+                                    "</td><td><input type='button' value='Inserisci uscita " + elem.id + "' name='modyfi' id='modyfi' onclick='editExit(" + elem.id + ")' /></td>" +
+                                    "</td><td><input type='button' value='cancella " + elem.id + "' name='modyfi' id='delete' onclick='deleteRow(" + elem.id + ")' /></td></tr>";
+                                $(newRow).appendTo("#json-data");
+
+
+                            });
+                            scrollSmoothToBottom();
+
+                        });
+                        // ############### end getJSON #######################
+                        // ################## Ajax call #######################
+
+                        // $.ajax({
+                        // 	type: 'POST',
+                        // 	url: 'datagetterJson.php',
+                        // 	dataType: "json",
+                        // 	data: {},
+                        // 	success: function (response) {
+
+                        // 		$.each(response, function (i, elem) {
+                        // 			// alert("qui");
+                        // 			var newRow = "<tr><td id='myid'>" + elem.id + "</td><td>" + elem.data + "</td><td>" + elem.ora_ingresso + "</td><td>" + elem.nome_visitatore + "</td><td>"
+                        // 				+ elem.tipodocumento + "</td><td>" + elem.estremi_documento + "</td><td>" + elem.num_badge + "</td><td>" + elem.societa_rappresentata
+                        // 				+ "</td><td>" + elem.referente_interno + "</td><td>" + elem.ora_uscita + "</td><td>" + elem.annotazioni
+                        // 				+ "</td><td><input type='button' value='modifica " + elem.id + "' name='modyfi' id='modyfi' onclick='editprevFile(" + elem.id + ")' /></td>"
+                        // 				+ "</td><td><input type='button' value='elimina " + elem.id + "' name='modyfi' id='modyfi' onclick='deleteFile(" + elem.id + ")' /></td></tr>";
+                        // 			$(newRow).appendTo("#json-data");
+                        // 		});
+
+                        // 	}
+
+                        // });
+                        // ######### end Ajax ###################################
+
+
+
+
+                        var entryday;
+                        var entryhour;
+                        var entryminut;
+                        var name;
+                        var tipoDocumento;
+                        var identity;
+                        var badgenumber;
+                        var company;
+                        var referent;
+                        var exithour;
+                        var entrytime
+                        var exittime;
+                        var note;
+                        $("#datepicker").datepicker({
+                            dateFormat: 'dd/mm/yy',
+                        });
+
+                        // $.datepicker.setDefaults($.datepicker.regional['it']);
+                        $("#sendbut").click(function() {
+
+
+                            entryday = $("#datepicker").val();
+                            entrytime = $("#oraingresso").val() + ":" + $("#minutingresso").val();
+                            name = $("#nominativo").val();
+                            tipoDocumento = $("#tipoDocumento").val();
+                            identity = $("#documento").val();
+                            badgenumber = $("#badgenumber").val();
+                            company = $("#societa").val();
+                            referent = $("#referente").val();
+                            exittime = $("#orauscita").val() + ":" + $("#minutiuscita").val();
+                            note = $("#note").val();
+                            $.ajax({
+                                type: "POST",
+                                url: "dataInput.php",
+                                data: "entryday=" + entryday + "&entrytime=" + entrytime + "&name=" + name + "&tipoDocumento=" + tipoDocumento + "&identity=" +
+                                    identity + "&badgenumber=" + badgenumber + "&company=" + company + "&referent=" + referent + "&exittime=" + exittime + "&note=" + note,
+                                dataType: "json",
+                                success: function(msg) {
+                                    console.log("successo");
+                                    $("#whatresult").text("successo");
+                                    $("#datepicker").val("");
+                                    $("#oraingresso").val("");
+                                    $("minutingresso").val("");
+                                    $("#nominativo").val("");
+                                    $("#tipoDocumento").val("");
+                                    $("#documento").val("");
+                                    $("#badgenumber").val("");
+                                    $("#societa").val("");
+                                    $("#referente").val("");
+                                    $("#oraUscita").val("");
+                                    $("#minutiuscita").val("");
+                                    $("#note").val("");
+
+                                },
+                                error: function(msg) {
+                                    console.log("fallimento " + msg.responseText);
+                                    $("#whatresult").text("fallimento" + msg.responseText);
+                                }
+                            });
+                            // location.reload(true);
+                            callfresh(name);
+                        });
+
+                        function callfresh() {
+                            alert("sta inserendo visitatore: " + name);
+                            location.reload(true);
+                        }
+                        $("#adesso").click(function() {
+                            var d = new Date();
+                            var month = d.getMonth() + 1;
+                            var ora = d.getHours();
+                            var minuti = d.getMinutes();
+                            if (month < 10) {
+                                month = "0" + month;
+                            }
+
+                            var day = d.getDate();
+                            if (day < 10) {
+                                day = "0" + day;
+                            }
+                            var year = d.getFullYear();
+                            var output = day + "/" + month + "/" + year;
+                            $("#datepicker").val(output);
+                            $("#oraingresso").val(ora);
+                            $("#minutingresso").val(minuti);
+
+                        });
+                        $("#adessoUscita").click(function() {
+                            var e = new Date();
+                            var oraUscita = e.getHours();
+                            var minutiuscita = e.getMinutes();
+                            $("#orauscita").val(oraUscita);
+                            $("#minutiuscita").val(minutiuscita);
+
+
+                        });
+
+
+                    });
+
+                    // vedi qui: https://stackoverflow.com/questions/22335424/ajax-response-returns-object-using-pdo-and-show-my-query
+                </script>
+
+                <script type="text/javascript">
+                    function editprevFile(whattaid) {
+                        $.ajax({
+                            type: "POST",
+                            url: "editPrev.php",
+                            data: "whattaid=" + whattaid,
+                            dataType: "json",
+                            success: function() {
+                                $("#whatresult").text("successo");
+                                $("#datepicker").val("");
+                                $("#oraingresso").val("");
+                                $("minutingresso").val("");
+                                $("#nominativo").val("");
+                                $("#tipoDocumento").val("");
+                                $("#documento").val("");
+                                $("#badgenumber").val("");
+                                $("#societa").val("");
+                                $("#referente").val("");
+                                $("#oraUscita").val("");
+                                $("#minutiuscita").val("");
+                                $("#note").val("");
+
+
+
+                                $("#datepicker").val(row.data);
+                                $("#oraingresso").val(row.ora_ingresso);
+                                $("#nominativo").val("cazzi");
+
+                            },
+                            error: function() {
+
+                            }
+
+                        });
+
+                    }
+                </script>
+            </table>
+            <!-- ######## vedi qui: http://www.yourinspirationweb.com/2010/03/26/jqueryphp-come-automatizzare-gli-inserimenti-nel-database/  ############## -->
+            <!-- ################################### https://www.targetweb.it/ajax-form-invio-dati-via-post/  ###################### -->
+            <!-- ################### https://www.tomshw.it/forum/threads/risultato-query-mysql-php-senza-aggiornare-pagina.255318/ ################ -->
+
+            <!-- inviare dati form html via jquery a php per mysql -->
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        </div>
+
+
+        <div class="table-responsive">
+            <table id="json-data" class="table-responsive table table-bordered table-hover">
+                <tr>
+                    <th>Data</th>
+                    <th>Ora ingresso</th>
+                    <th>Nominativo visitatore</th>
+                    <th>Tipo di documento</th>
+                    <th>Estremi documento</th>
+                    <th>Numero Badge interno</th>
+                    <th>Società rappresentata</th>
+                    <th>Referente interno</th>
+                    <th>Ora uscita</th>
+                    <th>Annotazioni</th>
+                    <th>Invio</th>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            Date:
+                            <input type="text" id="datepicker" size="8">
+                        </p>
+                    </td>
+
+                    <td>
+                        <select id="oraingresso">
+							<option value="00">00</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select> :
+                        <select id="minutingresso">
+							<script type="text/javascript">
+								for (var i = 0; i <= 59; i++) {
+									if(i < 10){
+										i = "0" + i;
+									}
+									document.write("<option value='" + i + "'>" + i + "</option>");
+								}
+
+							</script>
+						</select>
+                    </td>
+                    <td>
+                        <input type="text" name="nominativo" id="nominativo" />
+                    </td>
+                    <td>
+
+                        <!-- <input type="text" name="tipoDocumento" id="tipoDocumento" /> -->
+                        <select name="tipoDocumento" id="tipoDocumento">
+							<option value=""></option>
+							<option value="cartaIdentita">Carta Identità</option>
+							<option value="CIE">C.I.E.</option>
+							<option value="passaporto">Passaporto</option>
+							<option value="tesseraAzienda">Tessera Azienda</option>
+							<option value="badgeAzienda">Badge azienda</option>
+							<option value="altro">altro</option>
+						</select>
+                    </td>
+                    <td>
+                        <input type="text" name="documento" id="documento" />
+                    </td>
+                    <td>
+                        <select id="badgenumber">
+							<script type="text/javascript">
+								for (var i = 0; i < 50; i++) {
+									document.write("<option value='" + i + "'>" + i + "</option>");
+								}
+
+							</script>
+						</select>
+                    </td>
+                    <td>
+                        <input type="text" name="societa" id="societa" />
+                    </td>
+                    <!-- <script>
+                        function downloadname(){
+                        $.ajax({
+                            url: "nameFiller.php",
+                            type: "POST",
+                            success: function(responsename) {
+                                alert(responsename);
+                            }
+                        });
+                    }
+                    </script> -->
+                    <td>
+                        <input type="text" name="referente" id="referente" />
+                    </td>
+                    <td>
+                        <select id="orauscita">
+							<option value="00">00</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select> :
+                        <select id="minutiuscita">
+							<script type="text/javascript">
+								for (var i = 0; i <= 59; i++) {
+									if(i < 10){
+										i = "0" + i;
+									}
+									document.write("<option value='" + i + "'>" + i + "</option>");
+								}
+
+							</script>
+						</select>
+                    </td>
+                    <td>
+                        <input type="text" id="note" name="note" />
+                    </td>
+                    <td>
+                        <input type="button" name="sendbut" id="sendbut" value="send it" />
+                    </td>
+                </tr>
+            </table>
+            <input type="button" value="Adesso entrata" id="adesso" name="adesso" />
+            <input type="button" value="Adesso uscita" id="adessoUscita" name="adessoUscita" />
+        </div>
+        <!-- <div id="whatresult">
+
+		</div> -->
+        <button id="researchpagebotton" class="resbut">ricerca accessi</button>
+        <footer>
+            <p>
+                &copy; Copyright by Jerry
+            </p>
+        </footer>
+    </div>
+    <!--http://www.danieletabacco.com/selezione-dinamica-da-database-con-ajax-e-php/-->
+
+    <!-- ############## prova inserimento React ######################## -->
+    <div id="contenitore_bottone_like"></div>
+    <!-- Carica React. -->
+    <!-- Nota: quando rilasci il codice in produzione, sostituisci "development.js" con "production.min.js". -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- Carica il nostro componente React. -->
+    <script src="bottone_like.js"></script>
+
+    <!-- ############## FINE prova inserimento React ######################## -->
+
+</body>
+
+</html>

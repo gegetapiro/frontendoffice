@@ -1,0 +1,49 @@
+#adessoUscita {
+    float: right;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+
+/* bootstrap.min.css | http://localhost/localSites/frontend_application/bootstrap/css/bootstrap.min.css */
+
+.table-responsive {
+    overflow-x: visible;
+}
+
+#researchpage {
+    float: right;
+    margin-bottom: 20px;
+    ;
+}
+
+#byname {
+    border-style: solid;
+    border-color: #6b5e5e;
+    border-width: 1px;
+    margin: 6px;
+    padding: 12px;
+}
+
+#resultsearch {
+    display: none;
+    /* border-style: solid;
+    border-width: 3px;
+    border-color: rgb(70, 66, 66); */
+    margin: 20px;
+    padding: 10px;
+}
+
+.resbut {
+    width: 300px;
+}
+
+#researchpagebotton {
+    float: right;
+    margin-top: 60px;
+}

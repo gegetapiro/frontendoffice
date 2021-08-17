@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>searchEntries</title>
+    <meta charset="UTF-8">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/customize.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <h1>Search entries</h1>
+    <div class="container">
+
+        <div id="byname">
+            <h4>search by name</h4>
+            <input type="text" id="who" name="who" placeholder="Inserisci nome e cognome" size="40">
+            <button id="sendname">send name</button>
+
+        </div>
+    </div>
+    <script>
+        function editedit(whattaid) {
+            window.location = "edit.php?whattaid=" + whattaid;
+
+        }
+
+        function deleteFile(whatta_id) {
+            var chi = whatta_id;
+
+            $.ajax({
+                url: 'deleterecord.php',
+                type: 'POST',
+                data: {
+                    id: chi
+                },
+                success: function(response) {
+                    alert(response);
+                    $("#resultsearch").css("display", "none");
+
+                }
+            });
+
+        }
+        $(document).ready(function() {
+
+
+            $("#sendname").click(function() {
+                var whosearch = $("#who").val();
+                $.ajax({
+                    type: "POST",
+                    url: "searchrecords.php",
+                    dataType: "JSON",
+                    data: {
+                        whosearch: whosearch
+                    },
+                    success: function(message) {
+                        $("#resultsearch").replaceWith(`<table id='resultsearch' class='table table-responsive table-bordered table-hover table-striped'>
+                            <tr>
+            <th>Numero progressivo</th>
+            <th>Data</th>
+            <th>Ora ingresso</th>
+            <th>Nominativo visitatore</th>
+            <th>Tipologia documento</th>
+            <th>Estremi documento</th>
+            <th>Numero Badge interno</th>
+            <th>Società rappresentata</th>
+            <th>Referente interno</th>
+            <th>Ora uscita</th>
+            <th>Data uscita</th>
+            <th>Note particolari</th>
+            <th>Modifica</th>
+            <th>Elimina</th>
+
+
+        </tr>`);
+
+                        $.each(message, function(i, elem) {
+                            var newRow = "<tr><td id='myid'>" + elem[0] + "</td><td>" + elem[1] + "</td><td>" + elem[2] + "</td><td>" + elem[3] + "</td><td>" +
+                                elem[4] + "</td><td>" + elem[5] + "</td><td>" + elem[6] + "</td><td>" + elem[7] +
+                                "</td><td>" + elem[8] + "</td><td>" + elem[9] + "</td><td>" + elem[10] + "</td><td>" + elem[11] +
+                                "</td><td><input type='button' value='modifica " + elem[0] + "' name='modyfi' id='modyfi' onclick='editedit(" + elem[0] + ")' /></td>" +
+                                "</td><td><input type='button' value='elimina " + elem[0] + "' name='delete' id='delete' onclick='deleteFile(" + elem[0] + ")' /></td></tr>";
+                            $(newRow).appendTo("#resultsearch");
+
+
+
+                        });
+                        $("#resultsearch").css("display", "block");
+                        // $("foundrecords").val(message[0]);
+
+                    }
+
+                });
+
+            });
+        });
+    </script>
+
+    <!-- <div class="table-responsive" id="foundrecords"> -->
+
+    <table id='resultsearch' class='table table-responsive table-bordered table-hover table-striped'>
+
+    </table>
+    <!-- </div> -->
+
+</body>
+
+</html>

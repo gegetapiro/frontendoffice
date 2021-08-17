@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My HTML Page</title>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <script>
+    $(document).ready(function () {
+
+      /*  $.ajax({
+         type: 'POST',
+         url: 'datagetterJson.php',
+         dataType: "json",
+         data: {},
+         success: function (responso) {
+           console.log("cazzi");
+           alert(responso);
+ 
+         }
+       }); */
+
+      var url = "datagetterJson.php";
+
+      $.getJSON(url, function (data) {
+
+        console.log("sti cazzi local");
+
+
+      });
+
+    });
+
+
+
+  </script>
+
+</body>
+
+</html>
