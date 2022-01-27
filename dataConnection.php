@@ -1,9 +1,11 @@
 <?php
 // ############# localhost ################
-$host = "localhost";
-$db = "routesha_jerrydb";
+$host = "localhost";   
+// $host = "127.0.0.1"; 
+$db = "proveDaroutesharing.eu";
 $user = "root";
-$password = 'Libellula5653£?';
+//$password = 'Libellula5653£?';
+$password = '';
 $table = "moduloElencoVisitatori";
 // ################################################
 

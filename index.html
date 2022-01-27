@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/jquery-ui.js"></script>
+        <link rel="stylesheet" href="css/jquery-ui.css" />
+        <link rel="stylesheet" href="css/customize.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
 
-    <script type="text/javascript" src="js/jquery-ui.js"></script>
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <link rel="stylesheet" href="css/customize.css" />
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
- 
-   e>
 
-</head>
+    </head>
 
-<body>
-    <div class="container">
-        <!-- <div class="page-header"> -->
-        <h2>Inserimento visitatori con documento</h2>
-        <!-- </div> -->
-        <button id="researchpage" class="resbut">ricerca accessi</button>
+    <body>
+        <div class="container">
+            <!-- <div class="page-header"> -->
+            <h2>Inserimento visitatori</h2>
+            <!-- </div> -->
+            <button id="researchpage" class="resbut">ricerca accessi</button>
+            <div class="table-responsive">
+                <table id="json-data" class="table table-bordered table-hover
+                    table-striped onerowtab" >
+                    <tr>
+                        <th>Numero progressivo</th>
+                        <th>Data</th>
+                        <th>Ora ingresso</th>
+                        <th>Nominativo visitatore</th>
+                        <th>Tipologia documento</th>
+                        <th>Estremi documento</th>
+                        <th>Numero Badge interno</th>
+                        <th>Società rappresentata</th>
+                        <th>Referente interno</th>
+                        <th>Ora uscita</th>
+                        <th>Data uscita</th>
+                        <th>Note particolari</th>
+                        <th>Modifica</th>
+                        <th>Elimina</th>
 
-        <div class="table-responsive">
-            <table id="json-data" class="table table-bordered table-hover table-striped">
-                <tr>
-                    <th>Numero progressivo</th>
-                    <th>Data</th>
-                    <th>Ora ingresso</th>
-                    <th>Nominativo visitatore</th>
-                    <th>Tipologia documento</th>
-                    <th>Estremi documento</th>
-                    <th>Numero Badge interno</th>
-                    <th>Società rappresentata</th>
-                    <th>Referente interno</th>
-                    <th>Ora uscita</th>
-                    <th>Data uscita</th>
-                    <th>Note particolari</th>
-                    <th>Modifica</th>
-                    <th>Elimina</th>
-
-                </tr>
-                <script type="text/javascript">
+                    </tr>
+                    <script type="text/javascript">
                     scrollingElement = (document.scrollingElement || document.body);
 
                     function scrollSmoothToBottom(id) {
@@ -238,8 +238,7 @@
 
                     // vedi qui: https://stackoverflow.com/questions/22335424/ajax-response-returns-object-using-pdo-and-show-my-query
                 </script>
-
-                <script type="text/javascript">
+                    <script type="text/javascript">
                     function editprevFile(whattaid) {
                         $.ajax({
                             type: "POST",
@@ -276,70 +275,70 @@
 
                     }
                 </script>
-            </table>
-            <!-- ######## vedi qui: http://www.yourinspirationweb.com/2010/03/26/jqueryphp-come-automatizzare-gli-inserimenti-nel-database/  ############## -->
-            <!-- ################################### https://www.targetweb.it/ajax-form-invio-dati-via-post/  ###################### -->
-            <!-- ################### https://www.tomshw.it/forum/threads/risultato-query-mysql-php-senza-aggiornare-pagina.255318/ ################ -->
+                </table>
+                <!-- ######## vedi qui: http://www.yourinspirationweb.com/2010/03/26/jqueryphp-come-automatizzare-gli-inserimenti-nel-database/  ############## -->
+                <!-- ################################### https://www.targetweb.it/ajax-form-invio-dati-via-post/  ###################### -->
+                <!-- ################### https://www.tomshw.it/forum/threads/risultato-query-mysql-php-senza-aggiornare-pagina.255318/ ################ -->
+                <!-- inviare dati form html via jquery a php per mysql -->
+                <script src="bootstrap/js/bootstrap.min.js"></script>
 
-            <!-- inviare dati form html via jquery a php per mysql -->
-            <script src="bootstrap/js/bootstrap.min.js"></script>
-
-        </div>
+            </div>
 
 
-        <div class="table-responsive">
-            <table id="json-data" class="table-responsive table table-bordered table-hover">
-                <tr>
-                    <th>Data</th>
-                    <th>Ora ingresso</th>
-                    <th>Nominativo visitatore</th>
-                    <th>Tipo di documento</th>
-                    <th>Estremi documento</th>
-                    <th>Numero Badge interno</th>
-                    <th>Società rappresentata</th>
-                    <th>Referente interno</th>
-                    <th>Ora uscita</th>
-                    <th>Annotazioni</th>
-                    <th>Invio</th>
+            <div class="table-responsive">
+                <table id="json-data" class="table-responsive table
+                    table-bordered table-hover">
+                    <tr>
+                        <th>Data</th>
+                        <th>Ora ingresso</th>
+                        <th>Nominativo visitatore</th>
+                        <th>Tipo di documento</th>
+                        <th>Estremi documento</th>
+                        <th>Numero Badge interno</th>
+                        <th>Società rappresentata</th>
+                        <th>Referente interno</th>
+                        <th>Ora uscita</th>
+                        <th>Annotazioni</th>
+                        <th>Invio</th>
 
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            Date:
-                            <input type="text" id="datepicker" size="8">
-                        </p>
-                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                                Date:
+                                <input type="text" id="datepicker" size="8">
+                            </p>
+                        </td>
 
-                    <td>
-                        <select id="oraingresso">
-							<option value="00">00</option>
-							<option value="01">01</option>
-							<option value="02">02</option>
-							<option value="03">03</option>
-							<option value="04">04</option>
-							<option value="05">05</option>
-							<option value="06">06</option>
-							<option value="07">07</option>
-							<option value="08">08</option>
-							<option value="09">09</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-						</select> :
-                        <select id="minutingresso">
-							<script type="text/javascript">
+                        <td>
+                            <select id="oraingresso">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select> :
+                            <select id="minutingresso">
+                                <script type="text/javascript">
 								for (var i = 0; i <= 59; i++) {
 									if(i < 10){
 										i = "0" + i;
@@ -348,41 +347,43 @@
 								}
 
 							</script>
-						</select>
-                    </td>
-                    <td>
-                        <input type="text" name="nominativo" id="nominativo" />
-                    </td>
-                    <td>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="nominativo" id="nominativo"
+                                />
+                        </td>
+                        <td>
 
-                        <!-- <input type="text" name="tipoDocumento" id="tipoDocumento" /> -->
-                        <select name="tipoDocumento" id="tipoDocumento">
-							<option value=""></option>
-							<option value="cartaIdentita">Carta Identità</option>
-							<option value="CIE">C.I.E.</option>
-							<option value="passaporto">Passaporto</option>
-							<option value="tesseraAzienda">Tessera Azienda</option>
-							<option value="badgeAzienda">Badge azienda</option>
-							<option value="altro">altro</option>
-						</select>
-                    </td>
-                    <td>
-                        <input type="text" name="documento" id="documento" />
-                    </td>
-                    <td>
-                        <select id="badgenumber">
-							<script type="text/javascript">
+                            <!-- <input type="text" name="tipoDocumento" id="tipoDocumento" /> -->
+                            <select name="tipoDocumento" id="tipoDocumento">
+                                <option value=""></option>
+                                <option value="cartaIdentita">Carta Identità</option>
+                                <option value="CIE">C.I.E.</option>
+                                <option value="passaporto">Passaporto</option>
+                                <option value="tesseraAzienda">Tessera Azienda</option>
+                                <option value="badgeAzienda">Badge azienda</option>
+                                <option value="altro">altro</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="documento" id="documento"
+                                />
+                        </td>
+                        <td>
+                            <select id="badgenumber">
+                                <script type="text/javascript">
 								for (var i = 0; i < 50; i++) {
 									document.write("<option value='" + i + "'>" + i + "</option>");
 								}
 
 							</script>
-						</select>
-                    </td>
-                    <td>
-                        <input type="text" name="societa" id="societa" />
-                    </td>
-                    <!-- <script>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="societa" id="societa" />
+                        </td>
+                        <!-- <script>
                         function downloadname(){
                         $.ajax({
                             url: "nameFiller.php",
@@ -393,38 +394,39 @@
                         });
                     }
                     </script> -->
-                    <td>
-                        <input type="text" name="referente" id="referente" />
-                    </td>
-                    <td>
-                        <select id="orauscita">
-							<option value="00">00</option>
-							<option value="01">01</option>
-							<option value="02">02</option>
-							<option value="03">03</option>
-							<option value="04">04</option>
-							<option value="05">05</option>
-							<option value="06">06</option>
-							<option value="07">07</option>
-							<option value="08">08</option>
-							<option value="09">09</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-						</select> :
-                        <select id="minutiuscita">
-							<script type="text/javascript">
+                        <td>
+                            <input type="text" name="referente" id="referente"
+                                />
+                        </td>
+                        <td>
+                            <select id="orauscita">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select> :
+                            <select id="minutiuscita">
+                                <script type="text/javascript">
 								for (var i = 0; i <= 59; i++) {
 									if(i < 10){
 										i = "0" + i;
@@ -433,42 +435,46 @@
 								}
 
 							</script>
-						</select>
-                    </td>
-                    <td>
-                        <input type="text" id="note" name="note" />
-                    </td>
-                    <td>
-                        <input type="button" name="sendbut" id="sendbut" value="send it" />
-                    </td>
-                </tr>
-            </table>
-            <input type="button" value="Adesso entrata" id="adesso" name="adesso" />
-            <input type="button" value="Adesso uscita" id="adessoUscita" name="adessoUscita" />
-        </div>
-        <!-- <div id="whatresult">
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" id="note" name="note" />
+                        </td>
+                        <td>
+                            <input type="button" name="sendbut" id="sendbut"
+                                value="send it" />
+                        </td>
+                    </tr>
+                </table>
+                <input type="button" value="Adesso entrata" id="adesso"
+                    name="adesso" />
+                <input type="button" value="Adesso uscita" id="adessoUscita"
+                    name="adessoUscita" />
+            </div>
+            <!-- <div id="whatresult">
 
 		</div> -->
-        <button id="researchpagebotton" class="resbut">ricerca accessi</button>
-        <footer>
-            <p>
-                &copy; Copyright by Jerry
-            </p>
-        </footer>
-    </div>
-    <!--http://www.danieletabacco.com/selezione-dinamica-da-database-con-ajax-e-php/-->
+            <button id="researchpagebotton" class="resbut">ricerca accessi</button>
+            <footer>
+                <p>
+                    &copy; Copyright by Jerry
+                </p>
+            </footer>
+        </div>
+        <!--http://www.danieletabacco.com/selezione-dinamica-da-database-con-ajax-e-php/-->
+        <!-- ############## prova inserimento React ######################## -->
+        <div id="contenitore_bottone_like"></div>
+        <!-- Carica React. -->
+        <!-- Nota: quando rilasci il codice in produzione, sostituisci "development.js" con "production.min.js". -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js"
+            crossorigin></script>
+        <script
+            src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+            crossorigin></script>
+        <!-- Carica il nostro componente React. -->
+        <script src="bottone_like.js"></script>
 
-    <!-- ############## prova inserimento React ######################## -->
-    <div id="contenitore_bottone_like"></div>
-    <!-- Carica React. -->
-    <!-- Nota: quando rilasci il codice in produzione, sostituisci "development.js" con "production.min.js". -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <!-- Carica il nostro componente React. -->
-    <script src="bottone_like.js"></script>
-
-    <!-- ############## FINE prova inserimento React ######################## -->
-
-</body>
+        <!-- ############## FINE prova inserimento React ######################## -->
+    </body>
 
 </html>
