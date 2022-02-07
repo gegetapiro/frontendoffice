@@ -26,7 +26,7 @@
             <button id="researchpage" class="resbut">ricerca accessi</button>
             <div class="table-responsive">
                 <table id="json-data" class="table table-bordered table-hover
-                    table-striped onerowtab" >
+                    table-striped onerowtab">
                     <tr>
                         <th>Numero progressivo</th>
                         <th>Data</th>
@@ -80,17 +80,14 @@
 
                         $("#researchpagebotton").click(function() {
                             window.open("searchEntries.html");
-                        });
-
-
-                        // ############### getJSON #######################
+             
 
 
 
-
-                        var url = "datagetterJson.php";
+                        var url = "showrecords.php";
 
                         $.getJSON(url, function(data) {
+                           var visitatori = [];
 
                             $.each(data.visitatori, function(i, elem) {
 

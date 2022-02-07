@@ -72,6 +72,10 @@
                         whosearch: whosearch
                     },
                     success: function(message) {
+                        var count = 0;
+                        
+                     
+                        
                     
                         $("#resultsearch").replaceWith(`<table id='resultsearch' class='table table-responsive table-bordered table-hover table-striped'>
                             <tr>
@@ -100,10 +104,12 @@
                                 "</td><td><input type='button' value='modifica " + elem[0] + "' name='modyfi' id='modyfi' onclick='editedit(" + elem[0] + ")' /></td>" +
                                 "</td><td><input type='button' value='elimina " + elem[0] + "' name='delete' id='delete' onclick='deleteFile(" + elem[0] + ")' /></td></tr>";
                             $(newRow).appendTo("#resultsearch");
-
+                            
+                                      count ++;
 
 
                         });
+                        
                         $("#resultsearch").css("display", "block");
                         //$("foundrecords").val(message[0]);
 
